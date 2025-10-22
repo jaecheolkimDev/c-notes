@@ -7,17 +7,36 @@ C 공부 노트
 
 - 전처리기(preprocessor) : 프로세스 실행전에 먼저 처리하는것.
 
+- extern : 다른 소스 파일(외부)에 선언된 전역 변수 사용 키워드
+  - 외부 변수를 사용할 프로그램에서 재선언 해야함.
+    - ex1) extern 자료형 전역변수
+    - ex2) extern 반환값자료형 함수이름(매개변수 자료형)
 
-1 : true
-0 : false
-true : if(!0) , if(1) , if(2) , ... , if(235)
-false : if(0) , if(!1)
 
-return 0;	// 정상종료
-	   1;	// 1이상 : 정상종료 되었으나 다른 무엇을 나타냄.
-	  -1;	// 에러발생
-	  -2;	// 1이상,-2이하 : 구체적인 에러메시지를 보여줌.
- -> return 1이상은 종료하지않고 다음로직을 실행한다.
+- & : 주소값
+  - ex) int num = 3;
+  - int result = add(num);
+  - printf("num = %d, result = %d", num, result);
+    - (경우1) add함수가 변수의 값을 받아 사용하는 경우의 결과 : num = 3, result = 4
+    - (경우2) add함수가 변수를 직접 사용하는 경우의 결과 : num = 4, result = 4
+      - 프로그램을 작성하는 사람 입장에서는 당연히 (경우1)을 생각한다.
+      - 따라서 함수에 값을 줄 때, 그 변수의 값만을 사용하게 한다.
+      - 하지만 경우에 따라 num의 값을 실제로 바꾸어야 할 수 있는데, 이 경우 변수의 주소를 값으로 넘겨주어 처리한다.
+
+
+|종류|변환|설명|
+|------|---|---|
+|atoi   |char to int		|문자열을 정수 타입으로		|
+|atof	|char to double		|문자열을 실수 타입으로		|
+|atol	|char to long int	|문자열을 long 정수 타입으로	|
+
+|종류|if|return|
+|------|---|---|
+|1(true)   |if(!0) , if(1) , if(2) , ... , if(235)    |return 0; // 정상종료|
+|			|										|return 1이상	// 정상종료 되었으나 다른 무엇을 나타냄.|
+|0(false)  |if(0) , if(!1)							  |return -1이하	// 에러발생|
+
+
 
 
 
@@ -97,35 +116,11 @@ return 0;	// 정상종료
       - The
       - Littel
       - Prince
-	
-- extern : 다른 소스 파일(외부)에 선언된 전역 변수 사용 키워드
-  - 외부 변수를 사용할 프로그램에서 재선언 해야함.
-    - ex1) extern 자료형 전역변수
-    - ex2) extern 반환값자료형 함수이름(매개변수 자료형)
 
-sprintf : 서식(format)을 지정하여 문자열을 만든다.
-sprintf(배열, 서식, 값);
-sprintf(배열, 서식, 값1, 값2, ...);
-int sprintf(char* const_Buffer, char const* const_Format, ...);
-ex)
- sprintf(s1, "%c %d %f %e", 'a', 10, 3.2f, 1.123456e-21f);	// 문자, 정수, 실수를 문자열로 만듦
- printf("%s\n", s1);	// a 10 3.200000 1.123456e-21: 문자열 s1 출력
- 
-atoi = char to int = 문자열을 정수 타입으로
-atof = char to double = 문자열을 실수 타입으로
-atol = char to long int = 문자열을 long 정수 타입으로
+- sprintf : 서식(format)을 지정하여 문자열을 만든다.
+  - sprintf(배열, 서식, 값);
+  - sprintf(배열, 서식, 값1, 값2, ...);
+  - int sprintf(char* const_Buffer, char const* const_Format, ...);
+    - ex) sprintf(s1, "%c %d %f %e", 'a', 10, 3.2f, 1.123456e-21f);	// 문자, 정수, 실수를 문자열로 만듦
+    - printf("%s\n", s1);	// a 10 3.200000 1.123456e-21: 문자열 s1 출력
 
-& : 주소값
-ex)
- int num = 3;
- int result = add(num);
- printf("num = %d, result = %d", num, result);
- 
- (경우1) add함수가 변수의 값을 받아 사용하는 경우의 결과
-  num = 3, result = 4
- (경우2) add함수가 변수를 직접 사용하는 경우의 결과
-  num = 4, result = 4
- 
- 프로그램을 작성하는 사람 입장에서는 당연히 (경우1)을 생각한다.
- 따라서 함수에 값을 줄 때, 그 변수의 값만을 사용하게 한다.
- 하지만 경우에 따라 num의 값을 실제로 바꾸어야 할 수 있는데, 이 경우 변수의 주소를 값으로 넘겨주어 처리한다.
